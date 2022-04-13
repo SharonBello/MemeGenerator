@@ -1,0 +1,28 @@
+:root {
+    /* gallery */
+    --background: #22252c;
+    --header-background: linear-gradient( 176deg, rgb(51,190,109) 0%, rgb(12,152,185) 100%);
+    --header-btn-font: rgb(51,190,109);
+    --header-fonts: rgb(254, 254, 254);
+    --keywords-fonts: rgb(254, 254, 254);
+    --box-background:rgb(56, 59, 66);
+    --box-search:rgb(34, 37, 44);
+    
+    /* editor */
+    --box-editor-background:#383b42;
+    --editor-line: #ebeef3;
+    --move-updown: #42b2cf;
+    --add: #3cce53;
+    --delete: #e23b36;
+    --editor-controls-background: #19a59f;
+    --editor-controls-buttons: #ffffff;
+    --editor-controls-fonts: #22252c;
+    --share: #1e7cd3;
+    --share-font: #ffffff;
+    --download: #8f44bb;
+    --download-font: #ffffff;
+    --img-border: #363942;
+  
+  }
+
+

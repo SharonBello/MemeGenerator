@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mister-canvas</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="init()">
+    <div class="page-container">
+        <div class="page-header">
+            <img class="logo" src="logo/LOGO.png">
+            <button class="btn-gallery" onclick="goToGallery()">Gallery</button>
+            <button class="btn-about" onclick="readAbout()">About</button>
+        </div>
+         <!-- Gallery -->
+         <div class="gallery-container">
+             <div class="meme-img-container">
+             <!-- <div class="img-container"></div>
+             <img src = "img/1.jpg"  />
+             <img src = "img/2.jpg" /> -->
+             </div>
+            </div>
+
+        <div class="main-container">
+            <!-- Editor - Modal? -->
+    <div class="canvas-container">
+        <canvas id="canvas" width="800" height="600" onclick="draw(event)"></canvas>
+        
+    </div>
+    
+    <div class="editor-container">
+        <div>
+            <input type="text" id="topLine" placeholder="write your message here"/>
+        </div>
+        <!-- <div><label>Fill Color: <input type="color" name="fillColor" value="#000000"></label></div>
+        <div><label>Outline Color: <input type="color" name="penColor" value="#000000"></label></div>
+        <div><button class="btn" onclick="clearCanvas()">Clear</button></div>
+        <div><a href="#" onclick="downloadCanvas(this)" class="btn" download="my-photo">Download</a></div>
+        <div><button class="btn" onclick="uploadImg()">Upload</button></div> -->
+    </div>
+</div>
+</div>
+
+    <script src="js/services/upload-service.js"></script>
+    <script src="js/services/canvasService.js"></script>
+    <script src="js/memes/services/memeService.js"></script>
+    <script src="js/gallery/galleryService.js"></script>
+    <script src="js/memes/memeController.js"></script>
+    <script src="js/gallery/galleryController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+.main-container {
+    width: 80vw;
+    height: 50vh;
+    border: 0.7em solid green;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+}
+
+.canvas-container {
+    width: 45%;
+    height: 80%;
+    border: 0.7em solid purple;
+    margin: 1em;
+}
+
+#canvas {
+    display: block;
+    margin: 0 auto;
+    /* outline: 1px solid black; */
+    background-color: #fff;
+}
+
+.editor-container {
+    width: 45%;
+    height: 80%;
+    border: 0.7em solid orange;
+    margin: 1em;
+}
+
+#topLine {
+    font-size: 2em;
+    color: black;
+}
