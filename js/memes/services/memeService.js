@@ -37,6 +37,19 @@ function getMeme() {
     return gMeme
 }
 
+// function saveAndRestore() {
+//     gCtx.font = '50px Arial';
+//     gCtx.strokeStyle = 'green';
+//     gCtx.strokeText('Saving the context', 10, 50);
+//     gCtx.save();
+//     gCtx.font = '30px david';
+//     gCtx.strokeStyle = 'black';
+//     gCtx.strokeText('Switching to something else', 10, 100);
+//     gCtx.restore();
+//     gCtx.strokeText('Back to previous', 10, 150);
+// }
+
+
 // function isMemeClicked(clickedPos) {
 //     const { pos } = gMeme
 //     const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)

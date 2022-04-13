@@ -10,6 +10,7 @@
 @import 'components/main-header.css';
 @import 'components/memes-editor.css';
 @import 'components/memes-gallery.css';
+@import 'components/search-sort.css';
 
 /* Media Queries */
 @import 'mq/mq.css';

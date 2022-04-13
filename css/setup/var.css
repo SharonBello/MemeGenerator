@@ -8,15 +8,16 @@
     --box-background:rgb(56, 59, 66);
     --box-search:rgb(34, 37, 44);
     
-    /* editor */
-    --box-editor-background:#383b42;
-    --editor-line: #ebeef3;
+    /* tools */
+    --box-tools-background:#383b42;
+    --box-input-background:#c9c9c9;
+    --tools-line: #ebeef3;
     --move-updown: #42b2cf;
     --add: #3cce53;
     --delete: #e23b36;
-    --editor-controls-background: #19a59f;
-    --editor-controls-buttons: #ffffff;
-    --editor-controls-fonts: #22252c;
+    --tools-controls-background: #19a59f;
+    --tools-controls-buttons: #ffffff;
+    --tools-controls-fonts: #22252c;
     --share: #1e7cd3;
     --share-font: #ffffff;
     --download: #8f44bb;

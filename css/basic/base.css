@@ -1,9 +1,21 @@
-*,
-*::before,
-*::after {
+* {
     box-sizing: border-box;
-}
-
+  }
+  
+  html {
+    font-family: poppins;
+    line-height: 1.31;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  img {
+    /* width: 100%; */
+  }
+  
+  
 /* Set core root defaults */
 html:focus-within {
     scroll-behavior: smooth;
@@ -23,10 +35,18 @@ body {
 .page-container {
     width: 100vw;
     height: 100vh;
-    border: 0.7em solid black;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+}
+
+.components-container {
+    background-color: var(--box-background);
+    width: 90%;
+    height: 100vh;
+    margin: 1em auto;
+    border-radius: 1.5em;
+
 }
 
 

@@ -7,33 +7,39 @@ function renderCanvas() {
     getMeme()
 }
 
-function drawImage() {
+function drawImage(imgSrc) {
     let meme = new Image()
-    meme.src = 'img/1.jpg'
+    meme.src = imgSrc
     meme.onload = drawMemeScaled.bind(null, meme, gCtx);
 }
 
 function drawMemeScaled(meme, gCtx) {
     gElCanvas = gCtx.canvas
-    // var memeHorizontalRatio = gElCanvas.width - 200 / meme.width
-    // var memeVerticalRatio = gElCanvas.height - 200 / meme.height
-    var ratio = Math.min(meme.width/ meme.height)
-    var centerShift_x = (gElCanvas.width - meme.width * ratio) / 2
-    var centerShift_y = (gElCanvas.height - meme.height * ratio) - 100
-    gCtx.drawImage(meme, 0, 0, meme.width, meme.height,
-        centerShift_x, centerShift_y, meme.width * ratio, meme.height * ratio)
-        drawText()
+    gCtx.beginPath();
+    let ratio = Math.min((gElCanvas.width / meme.width), (gElCanvas.height / meme.height))
+    let ratioWidth = meme.width*ratio
+    let ratioHeight = meme.height*ratio
+    gCtx.drawImage(meme, (gElCanvas.width-ratioWidth)/2,(gElCanvas.height-ratioHeight)/2,ratioWidth,ratioHeight)
+    drawText()
 }
 
-const drawText = function(){
-    let txt = document.getElementById('topLine').value
-    let x = gElCanvas.width -  550
-    let y = gElCanvas.height - 520
-    gCtx.font = `58px impact`
+const drawText = function () {
+    let txt = document.querySelector('.topLine').value
+    let x = gElCanvas.width - 500
+    let y = gElCanvas.height - 600
+    gCtx.font = `30px impact`
     gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = 8
+    gCtx.lineWidth = 2
     gCtx.strokeText(txt, x, y)
     // var m=gCtx.measureText(txt)
     gCtx.fillStyle = 'white'
     gCtx.fillText(txt, x, y)
+    gCtx.save()
+}
+
+// gCtx.drawFocusIfNeeded(gElCanvas)
+
+function addNewLine(ev) {
+    let newTextLine = document.querySelector('.topLine').value = ''
+    
 }

@@ -1,0 +1,12 @@
+.search {
+    border-radius: 10em;
+    border: none;
+    font-size: 2em;
+    font-family: poppins;
+    width: 50%;
+    height: 100px;
+    position: relative;
+    padding-left: 2em;
+    margin-left: 5em;
+    margin: 2em;
+}

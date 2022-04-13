@@ -2,9 +2,9 @@
 
 
 function getGallery() {
-    let imgsGallery = ""
+    let imgsGallery = ''
     for (let i = 0; i < gMemeImages.length; i++) {
-        imgsGallery += `<img onclick="openEditor('${i}.jpg')" id="img${i}" src="img/${gMemeImages[i]}.jpg">`
+        imgsGallery += `<img onclick="openEditor('${i+1}.jpg')" id="img${i+1}" class="meme-box" src="img/${gMemeImages[i]}.jpg">`
     }
     return imgsGallery
 }
@@ -16,9 +16,10 @@ function renderGallery() {
 
 function openEditor(imgName) {
     //hide div.gallery-container
-    let galleryEl = document.querySelector('div.gallery-container')
-    galleryEl.style.display = 'none'
+    let elComponents = document.querySelector('div.components-container')
+    elComponents.style.display = 'none'
     //show div.editor-container
-    let editorEl = document.querySelector('div.editor-container')
-    editorEl.style.display = 'block'
+    let elEditor = document.querySelector('div.editor-container')
+    elEditor.style.display = 'flex'
+    drawImage("img/" + imgName)
 }

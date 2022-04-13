@@ -16,42 +16,50 @@
             <button class="btn-gallery" onclick="goToGallery()">Gallery</button>
             <button class="btn-about" onclick="readAbout()">About</button>
         </div>
-
-        <!-- <div class="search-container">
-            <form action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-          </div> -->
-        <!-- </div> -->
-         <!-- Gallery -->
-         <div class="gallery-container">
-             <div class="meme-item meme-img-container">
-             <!-- <div class="img-container"></div>
-             <img src = "img/1.jpg"  />
-             <img src = "img/2.jpg" /> -->
-             </div>
+        <div class="components-container">
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." class="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
+            <!-- Gallery -->
+            <div class="gallery-container">
+                <div class="meme-img-container"></div>
+            </div>
+        </div>
 
         <div class="editor-container">
-            <!-- Editor - Modal? -->
-    <div class="canvas-container">
-        <canvas id="canvas" width="800" height="600" onclick="draw(event)"></canvas>
-        
-    </div>
-    
-    <div class="tools-container">
-        <div>
-            <input type="text" id="topLine" placeholder="write your message here"/>
+            <!-- Editor  -->
+            <div class="canvas-container">
+                <canvas id="canvas" width="600" height="800" onclick="draw(event)"></canvas>
+            </div>
+
+            <div class="tools-container">
+                <div>
+                    <input type="text" id="topLine" placeholder="write your message here" required
+                    minlength="4" maxlength="25" size="10" />
+                </div>
+                <div class="line-control">
+                    <div><button class="switch-text-lines" onclick="toggleLines()">⇅</button></div>
+                    <div><button class="new-text-lines" onclick="addNewLine(event)">+</button></div>
+                    <div><button class="delete" onclick="clearCanvas()">X</button></div>
+                </div>
+                <div class="font-control">
+                    <div><button class="change-font-size" onclick="decreaseFontSize()">A+</button></div>
+                    <div><button class="change-font-size" onclick="increaseFontSize()">A-</button></div>
+                    <div><button class="align-text align-text-left" onclick="alignLeft()">⥪</button></div>
+                    <div><button class="align-text align-text-center" onclick="alignCenter()">|||</button></div>
+                    <div><button class="align-text align-text-right" onclick="alignRight()">⥭</button></div>
+                    <div><input type="color" name="fontColor" value="#000000"></div>
+            </div>
+            <div class="use-meme">
+                <div><a href="#" onclick="uploadImg(this)" class="button button-share">Share</a></div>
+                <div><a href="#" onclick="downloadCanvas(this)" class="button button-download" download="Amazing">Download</a></div>
+            </div>
+            </div>
         </div>
-        <!-- <div><label>Fill Color: <input type="color" name="fillColor" value="#000000"></label></div>
-        <div><label>Outline Color: <input type="color" name="penColor" value="#000000"></label></div>
-        <div><button class="btn" onclick="clearCanvas()">Clear</button></div>
-        <div><a href="#" onclick="downloadCanvas(this)" class="btn" download="my-photo">Download</a></div>
-        <div><button class="btn" onclick="uploadImg()">Upload</button></div> -->
     </div>
-</div>
-</div>
 
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/canvasService.js"></script>
