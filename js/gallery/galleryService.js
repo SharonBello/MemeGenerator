@@ -3,29 +3,22 @@
 
 let gMemeImages = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12' , '13', '14', '15', '16', '17' , '18']
 let gCurrentMemeImage
+let gKeywordSearchCountMap = {'funny' : 12 , 'cat': 16, 'baby': 2}
+let gImgs = [{
+    keyword: 'funny'
+}]
+
+// gMeme = {
+//     keyword,
+//     img: 
+// }
 
 
-let memeImg = {
-    // idx: 0,
-    src: '1'
-}
-// {
-//     idx: 1,
-//     src: '2'
-// }]
-
+//TODO
 function getMemeImgSrc() {
     let memeImgSrc = gMemeImages[0]
     console.log('memeIdMGsRC: ', memeImgSrc)
 }
-
-
-
-
-
-
-
-
 
 
 // Change Meme from Gallery to Editor

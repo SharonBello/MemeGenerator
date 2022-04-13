@@ -1,4 +1,4 @@
-.main-container {
+.editor-container {
     width: 80vw;
     height: 50vh;
     border: 0.7em solid green;
@@ -24,7 +24,7 @@
     background-color: #fff;
 }
 
-.editor-container {
+.tools-container {
     width: 45%;
     height: 80%;
     border: 0.7em solid orange;

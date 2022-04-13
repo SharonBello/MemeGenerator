@@ -1,3 +1,14 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -18,8 +29,4 @@ body {
     flex-direction: column;
 }
 
-.page-header{
-    min-width: 80%;
-    min-height: 10vh;
-    margin: 1em auto;
-}
+
