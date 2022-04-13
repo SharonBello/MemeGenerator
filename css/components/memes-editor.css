@@ -8,7 +8,7 @@ div.editor-container {
 }
 
 .canvas-container {
-    min-width: 40%;
+    min-width: 45%;
     height: 85%;
     position: relative;
     overflow: hidden;
@@ -24,7 +24,7 @@ div.editor-container {
 
 .tools-container {
     margin: 0;
-    min-width: 40%;
+    max-width: 45%;
     height: 85%;
     position: relative;
     overflow: hidden;
@@ -33,7 +33,7 @@ div.editor-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2em;
+    font-size: 1.1em;
     line-height: 1em;
     padding: 2em;
     border: 1px solid black;
@@ -45,9 +45,6 @@ div.editor-container {
 #topLine {
     font-size: 2em;
     color: black;
-}
-
-#topLine {
     width: 15em;
     text-align: center;
     height: 2em;
@@ -65,7 +62,7 @@ a {
 
 .tools-container button,
 .button {
-    font-size: 2em;
+    font-size: 1.5em;
     padding: 0.5em;
     color: white;
     border: none;
@@ -82,7 +79,6 @@ a.button {
 
 button .button:first-child {
     padding: 0.2em;
-    font-size: 1.5em;
     width: 1em;
 }
 
@@ -117,9 +113,9 @@ button .button:first-child {
 }
 
 .font-control input {
-    font-size: 2em;
-    min-width: 2em;
-    min-height: 2em;
+    font-size: 1em;
+    min-width: 1em;
+    min-height: 1em;
     background: none;
 }
 

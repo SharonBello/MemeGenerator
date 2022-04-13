@@ -21,10 +21,12 @@ function drawMemeScaled(meme, gCtx) {
     let ratioHeight = meme.height*ratio
     gCtx.drawImage(meme, (gElCanvas.width-ratioWidth)/2,(gElCanvas.height-ratioHeight)/2,ratioWidth,ratioHeight)
     drawText()
+    addNewLine()
+
 }
 
 const drawText = function () {
-    let txt = document.querySelector('.topLine').value
+    let txt = document.getElementById('topLine').value
     let x = gElCanvas.width - 500
     let y = gElCanvas.height - 600
     gCtx.font = `30px impact`
@@ -39,7 +41,18 @@ const drawText = function () {
 
 // gCtx.drawFocusIfNeeded(gElCanvas)
 
-function addNewLine(ev) {
-    let newTextLine = document.querySelector('.topLine').value = ''
-    
+function addNewLine() {
+    let newTextLine = document.getElementById('topLine').value = ''
+    let x = gElCanvas.width - 500
+    let y = gElCanvas.height - 400
+    gCtx.font = `30px impact`
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 2
+    gCtx.strokeText(newTextLine, x, y)
+    // var m=gCtx.measureText(txt)
+    gCtx.fillStyle = 'white'
+    gCtx.fillText(newTextLine, x, y)
+    renderCanvas()
+    gCtx.save()
+
 }
