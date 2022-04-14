@@ -1,6 +1,9 @@
 'use strict'
 
 let lastVal
+let xCoord = 0
+let fontSize = 28
+
 
 const handleOnChange = (e) => {
     let currSentence = getSentence()
@@ -54,8 +57,6 @@ function deleteLastSentence() {
     setCanvas()
 }
 
-let xCoord = 0
-
 function alignLeft() {
     xCoord = 50
     clearCanvas()
@@ -73,8 +74,6 @@ function alignRight() {
     clearCanvas()
     drawTexts()
 }
-
-let fontSize = 28
 
 function increaseFontSize() {
     if (fontSize <= 34) {

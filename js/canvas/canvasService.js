@@ -1,73 +1,70 @@
+'use strict'
+
 let offsetX
 let offsetY
+
 function setOffsets(event) {
-    let rect = canvas.getBoundingClientRect();
+    let rect = canvas.getBoundingClientRect()
     // variables used to get mouse position on the canvas
-    offsetX = event.clientX -  rect.left
-    offsetY = event.clientY -  rect.top
+    offsetX = event.clientX - rect.left
+    offsetY = event.clientY - rect.top
     // let canvasOffset = event.setOffsets;
 }
 
-// test if x,y is inside the bounding box of texts[textIndex]
+// test if x,y is inside the bounding box 
 function textHitBounds(x, y, textIndex) {
     let texts = getTexts()
-    let text = texts[textIndex];
-    return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y);
+    let text = texts[textIndex]
+    return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y)
 }
 
 // handle mousedown events
-// iterate through texts[] and see if the user
-// mousedown'ed on one of them
-// If yes, set the gSelectedText to the index of that text
 function handleMouseDown(e) {
     setOffsets(e)
-    e.preventDefault();
-    startX = parseInt(e.clientX - offsetX);
-    startY = parseInt(e.clientY - offsetY);
+    e.preventDefault()
+    startX = parseInt(e.clientX - offsetX)
+    startY = parseInt(e.clientY - offsetY)
     let texts = getTexts()
     // Put your mousedown stuff here
     for (let i = 0; i < texts.length; i++) {
         if (textHitBounds(startX, startY, i)) {
-            gSelectedText = i;
+            gSelectedText = i
         }
     }
 }
 
 // done dragging
 function handleMouseUp(e) {
-    e.preventDefault();
-    gSelectedText = -1;
+    e.preventDefault()
+    gSelectedText = -1
 }
 
 // also done dragging
 function handleMouseOut(e) {
-    e.preventDefault();
-    gSelectedText = -1;
+    e.preventDefault()
+    gSelectedText = -1
 }
 
 // handle mousemove events
-// calc how far the mouse has been dragged since
-// the last mousemove event and move the selected text
-// by that distance
 function handleMouseMove(e) {
     setOffsets(e)
     if (gSelectedText < 0) {
         return;
     }
-    e.preventDefault();
-    mouseX = parseInt(e.clientX - offsetX);
-    mouseY = parseInt(e.clientY - offsetY);
+    e.preventDefault()
+    mouseX = parseInt(e.clientX - offsetX)
+    mouseY = parseInt(e.clientY - offsetY)
 
     // Put your mousemove stuff here
-    let dx = mouseX - startX;
-    let dy = mouseY - startY;
-    startX = mouseX;
-    startY = mouseY;
+    let dx = mouseX - startX
+    let dy = mouseY - startY
+    startX = mouseX
+    startY = mouseY
     let texts = getTexts()
-    let text = texts[gSelectedText];
-    text.x += dx;
-    text.y += dy;
-    draw();
+    let text = texts[gSelectedText]
+    text.x += dx
+    text.y += dy
+    draw()
 }
 
 function renderCanvas() {
@@ -90,11 +87,10 @@ function setCanvas() {
     ctx.save()
 }
 
-
 function drawImage(imgSrc) {
     let meme = new Image()
     meme.src = imgSrc
-    meme.onload = drawMemeScaled.bind(null, meme, ctx);
+    meme.onload = drawMemeScaled.bind(null, meme, ctx)
 }
 
 function drawMemeScaled(meme, ctx) {
@@ -112,7 +108,6 @@ function appendText(elMemeTxt) {
     userTxtInput = `<input type="text" name="userInput" class=userTextInput />`
     return userTxtInput
 }
-
 
 function drawTexts() {
     let texts = getTexts()
@@ -139,31 +134,3 @@ function drawTexts() {
 function clearCanvas() {
     drawImage("img/" + selectedImg)
 }
-
-// let memePos = {
-//     x: 0,
-//     y: 0,
-//     isDown: false
-// }
-//     // calc the y coordinate for this text on the canvas
-//     let y = texts.length * 20 + 20;
-
-//     // get the text from the input element
-//     let text = {
-//         text: $("#theText").val(),
-//         x: 20,
-//         y: y
-//     };
-
-//     // calc the size of this text for hit-testing purposes
-//     ctx.font = "16px verdana";
-//     text.width = ctx.measureText(text.text).width;
-//     text.height = 16;
-
-//     // put this new text in the texts array
-//     texts.push(text);
-
-//     // redraw everything
-//     draw();
-
-// });

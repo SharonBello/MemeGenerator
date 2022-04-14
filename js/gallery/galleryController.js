@@ -1,6 +1,5 @@
 'use strict'
 
-
 function getGallery(memeImages) {
     let imgsGallery = ''
     for (let i = 0; i < memeImages.length; i++) {
@@ -15,8 +14,9 @@ function renderGallery() {
 }
 
 let selectedImg
+
 function openEditor(imgName) {
-    selectedImg= imgName
+    selectedImg = imgName
     //hide div.gallery-container
     let elComponents = document.querySelector('div.components-container')
     elComponents.style.display = 'none'
@@ -27,7 +27,7 @@ function openEditor(imgName) {
 }
 
 function filterCategory(filterBy) {
-    if (filterBy==="") {
+    if (filterBy === "") {
         let elMemeImage = document.querySelector('.meme-img-container')
         elMemeImage.innerHTML = getGallery(gMemeImages)
         return
@@ -36,7 +36,7 @@ function filterCategory(filterBy) {
         if (memeKeyword.includes(filterBy))
             return index
     })
-    indicesMemes = indicesMemes.filter(x => x!==undefined)
+    indicesMemes = indicesMemes.filter(x => x !== undefined)
     let elMemeImage = document.querySelector('.meme-img-container')
     let arrImgs = [];
     indicesMemes.forEach(x => arrImgs.push(gMemeImages[x]))
@@ -45,10 +45,11 @@ function filterCategory(filterBy) {
 }
 
 let keyFontSize = 16
+
 function increaseKeywordSize(filterBy) {
-    let el = document.querySelector('button.'+filterBy)
+    let el = document.querySelector('button.' + filterBy)
     let idx = keywordsTypes.indexOf(filterBy)
-    if (keywordsSize[idx]<30) {
+    if (keywordsSize[idx] < 30) {
         keywordsSize[idx] += 2
     }
     if (el)
