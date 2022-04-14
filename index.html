@@ -40,9 +40,9 @@
                     minlength="4" maxlength="30" size="10" />
                 </div>
                 <div class="line-control">
-                    <div><button class="switch-text-lines" onclick="toggleLines()">⇅</button></div>
-                    <div><button class="new-text-lines" onclick="addNewLine(event)">+</button></div>
-                    <div><button class="delete" onclick="deleteLine()">X</button></div>
+                    <div><button class="switch-text-lines" onclick="toggleTopBottom()">⇅</button></div>
+                    <div><button class="new-text-lines" onclick="addNewSentence(event)">+</button></div>
+                    <div><button class="delete" onclick="deleteLastSentence()">X</button></div>
                 </div>
                 <div class="font-control">
                     <div><input class="change-font-size increaseFont" type="button" onchange="increaseFontSize()" name="increase" value="A+"></div>
@@ -56,8 +56,13 @@
                     <div><label><input id="fontStrokeWidth" type="range" name="fontStrokeWidth" min="1" max="8" step="1" value="2"></label></div>
             </div>
             <div class="use-meme">
-                <div><a href="#" onclick="uploadImg(this)" class="button button-share">Share</a></div>
+                <div><a href="#" onclick="uploadImg()" class="button button-share">Share</a></div>
+                <div class="share-container"></div>
                 <div><a href="#" onclick="downloadCanvas(this)" class="button button-download" download="Amazing">Download</a></div>
+
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+
+
             </div>
             </div>
         </div>

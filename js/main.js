@@ -5,7 +5,7 @@ function init() {
     ctx = canvas.getContext('2d')
     canvas.width = 500
     canvas.height = 514
-    addListeners()
+    // addListeners()
     renderGallery()
 }
 
@@ -37,46 +37,46 @@ function readAbout() {
 // }
 
 
-function addListeners() {
-    addMouseListeners()
-    addTouchListeners()
-    window.addEventListener('resize', () => {
-        resizeCanvas()
-    })
-}
+// function addListeners() {
+//     addMouseListeners()
+//     addTouchListeners()
+//     window.addEventListener('resize', () => {
+//         resizeCanvas()
+//     })
+// }
 
-function addMouseListeners() {
-    canvas.addEventListener('mousemove', onMove)
-    canvas.addEventListener('mousedown', onDown)
-    canvas.addEventListener('mouseup', onUp)
-}
+// function addMouseListeners() {
+//     canvas.addEventListener('mousemove', onMove)
+//     canvas.addEventListener('mousedown', onDown)
+//     canvas.addEventListener('mouseup', onUp)
+// }
 
-function addTouchListeners() {
-    canvas.addEventListener('touchmove', onMove)
-    canvas.addEventListener('touchstart', onDown)
-    canvas.addEventListener('touchend', onUp)
-}
+// function addTouchListeners() {
+//     canvas.addEventListener('touchmove', onMove)
+//     canvas.addEventListener('touchstart', onDown)
+//     canvas.addEventListener('touchend', onUp)
+// }
 
-function onDown(ev) {
-    const pos = getEvPos(ev)
-    if (!MemeClicked(pos)) return
-    setMemeDrag(true)
-    gStartPos = pos
-    document.body.style.cursor = 'grabbing'
-}
+// function onDown(ev) {
+//     const pos = getEvPos(ev)
+//     if (!MemeClicked(pos)) return
+//     setMemeDrag(true)
+//     gStartPos = pos
+//     document.body.style.cursor = 'grabbing'
+// }
 
-function onMove(ev) {
-    const circle = getMeme();
-    if (!circle.isDrag) return
-    const pos = getEvPos(ev)
-    const dx = pos.x - gStartPos.x
-    const dy = pos.y - gStartPos.y
-    moveMeme(dx, dy)
-    gStartPos = pos
-    renderCanvas()
-}
+// function onMove(ev) {
+//     const circle = getMeme();
+//     if (!circle.isDrag) return
+//     const pos = getEvPos(ev)
+//     const dx = pos.x - gStartPos.x
+//     const dy = pos.y - gStartPos.y
+//     moveMeme(dx, dy)
+//     gStartPos = pos
+//     renderCanvas()
+// }
 
-function onUp() {
-    setMemeDrag(false)
-    document.body.style.cursor = 'grab'
-}
+// function onUp() {
+//     setMemeDrag(false)
+//     document.body.style.cursor = 'grab'
+// }
