@@ -17,7 +17,6 @@ function drawImage(imgSrc) {
 function drawMemeScaled(meme, ctx) {
     canvas = ctx.canvas
     ctx.beginPath()
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
     let ratio = Math.min((canvas.width / meme.width), (canvas.height / meme.height))
     let ratioWidth = meme.width * ratio
     let ratioHeight = meme.height * ratio
@@ -30,15 +29,14 @@ function appendText(elMemeTxt) {
     userTxtInput = `<input type="text" name="userInput" class=userTextInput />`
     return userTxtInput
 }
-
 function setCanvas() {
     let userFontFillStyle = document.querySelector('input[name="fontColor"]').value
     let userFontStrokeStyle = document.querySelector('input[name="fontStrokeColor"]').value
     let fontStrokeWidth = document.querySelector('input[name="fontStrokeWidth"]').value
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.textBaseline = top
-    ctx.font = `28px impact`
-    ctx.textAlign = 'right'
+    ctx.font = fontSize + 'px impact'
+    ctx.textAlign = 'left'
     ctx.strokeStyle = userFontStrokeStyle
     ctx.lineWidth = fontStrokeWidth
     ctx.fillStyle = userFontFillStyle
@@ -75,7 +73,7 @@ function addNewSentence(e) {
     e.stopPropagation()
 }
 
-function toggleTopBottom() {
+function toggleLines() {
     let sentences = getSentences()
     if (sentences.length >= 2) {
         clearCanvas()
@@ -93,44 +91,19 @@ function drawSentences() {
     let sentences = getSentences()
     let spacing = 40
     if (sentences.length === 1) {
-        if (ctx.textAlign === 'center') {
-            ctx.strokeText(sentences[0], 150, 50)
-            ctx.fillText(sentences[0], 150, 50)
-        } else if (ctx.textAlign === 'left') {
-            ctx.strokeText(sentences[0], 50, 50)
-            ctx.fillText(sentences[0], 50, 50)
-        } else if (ctx.textAlign === 'right')
-            ctx.strokeText(sentences[0], 450, 50)
-            ctx.fillText(sentences[0], 450, 50)
-    } 
-    else if (sentences.length >= 2) {
-        if (ctx.textAlign === 'center') {
-            ctx.strokeText(sentences[0], 150, (1) * 50)
-            ctx.fillText(sentences[0], 150, (1) * 50)
-            ctx.strokeText(sentences[sentences.length - 1], 150, 450)
-            ctx.fillText(sentences[sentences.length - 1], 150, 450)
-        } else if (ctx.textAlign === 'left') {
-            ctx.strokeText(sentences[0], 50, (1) * 50)
-            ctx.fillText(sentences[0], 50, (1) * 50)
-            ctx.strokeText(sentences[sentences.length - 1], 50, 450)
-            ctx.fillText(sentences[sentences.length - 1], 50, 450)
-        } else if (ctx.textAlign === 'right') {
-            ctx.strokeText(sentences[0], 450, (1) * 50)
-            ctx.fillText(sentences[0], 450, (1) * 50)
-            ctx.strokeText(sentences[sentences.length - 1], 450, 450)
-            ctx.fillText(sentences[sentences.length - 1], 450, 450)
-        }
+        ctx.strokeText(sentences[0], xCoord, 50)
+        ctx.fillText(sentences[0], xCoord, 50)
+
+    } else if (sentences.length >= 2) {
+        ctx.strokeText(sentences[0], xCoord, (1) * 50)
+        ctx.fillText(sentences[0], xCoord, (1) * 50)
+        ctx.strokeText(sentences[sentences.length - 1], xCoord, 450)
+        ctx.fillText(sentences[sentences.length - 1], xCoord, 450)
+
         sentences.forEach((sentence, index) => {
             if (index !== 0 && index !== (sentences.length - 1)) {
-                if (ctx.textAlign === 'center') {
-                    ctx.strokeText(sentences[0], 150, 250 + spacing)
-                    ctx.fillText(sentences[0], 150, 250 + spacing)
-                } else if (ctx.textAlign === 'left') {
-                    ctx.strokeText(sentences[0], 50, 250 + spacing)
-                    ctx.fillText(sentences[0], 50, 250 + spacing)
-                } else if (ctx.textAlign === 'right')
-                    ctx.strokeText(sentences[0], 450, 250 + spacing)
-                    ctx.fillText(sentences[0], 450, 250 + spacing)
+                ctx.strokeText(sentence, xCoord, 250 + spacing)
+                ctx.fillText(sentence, xCoord, 250 + spacing)
                 spacing += 20
             }
         })
@@ -150,24 +123,44 @@ function deleteLastSentence() {
     setCanvas()
 }
 
-function alignLeft() {
-        
-}
+let xCoord = 0
 
 function alignLeft() {
-        
+    xCoord = 50
+    clearCanvas()
+    drawSentences()
+}
+
+function alignCenter() {
+    xCoord = 50
+    clearCanvas()
+    drawSentences()
 }
 
 function alignRight() {
-        
+    xCoord = 100
+    clearCanvas()
+    drawSentences()
 }
 
+let fontSize = 28
+
 function increaseFontSize() {
-    
+    if (fontSize <= 34) {
+        fontSize += 2
+    }
+    clearCanvas()
+    drawSentences()
+    setCanvas()
 }
 
 function decreaseFontSize() {
-    
+    if (fontSize >= 14) {
+        fontSize -= 2
+    }
+    clearCanvas()
+    drawSentences()
+    setCanvas()
 }
 
 ///// MAYNE SWITCH???
@@ -182,7 +175,7 @@ function loadImageFromInput(ev, onImageReady) {
 
     reader.onload = (event) => {
         let img = new Image()
-            // Render on canvas
+        // Render on canvas
         img.src = event.target.result
         img.onload = onImageReady.bind(null, img)
     }
@@ -193,5 +186,3 @@ function loadImageFromInput(ev, onImageReady) {
 function renderImg(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }
-
-

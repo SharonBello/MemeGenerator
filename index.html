@@ -18,10 +18,24 @@
         </div>
         <div class="components-container">
             <div class="search-container">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." class="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                <form>
+                    <input type="text" placeholder="Search.." class="search" onkeyup="searchKeywords(event)">
+                    <button type="submit" class="btn-search"><i class="fa fa-search">&#xf002</i></button>
                 </form>
+            </div>
+            <div class="keywords">
+                <div>
+                    <button onclick='filterCategory("funny")' class="keyword funny">funny</button>
+                    <button onclick='filterCategory("men")' class="keyword men">men</button>
+                    <button onclick='filterCategory("movie")' class="keyword movie">movie</button>
+                    <button onclick='filterCategory("comic")' class="keyword comic">comic</button>
+                    <button onclick='filterCategory("animal")' class="keyword animal">animal</button>
+                    <button onclick='filterCategory("smile")' class="keyword smile">smile</button>
+                    <button onclick='filterCategory("baby")' class="keyword baby">baby</button>
+                    <button onclick='filterCategory("")' class="clear-filter">Clear</button>
+                    <button onclick='resetCategory()' class="clear-filter">Reset</button>
+                </div>
+                <strong></strong>
             </div>
             <!-- Gallery -->
             <div class="gallery-container">
@@ -36,8 +50,9 @@
 
             <div class="tools-container">
                 <div class="userText">
-                    <input class="userTextInput" onchange="handleOnChange(event)" type="text" name="userText" id="userText" placeholder="write your message here" required
-                    minlength="4" maxlength="30" size="10" />
+                    <input class="userTextInput" onchange="handleOnChange(event)" type="text" name="userText"
+                        id="userText" placeholder="write your message here" required minlength="4" maxlength="30"
+                        size="10" />
                 </div>
                 <div class="line-control">
                     <div><button class="switch-text-lines" onclick="toggleTopBottom()">⇅</button></div>
@@ -45,25 +60,29 @@
                     <div><button class="delete" onclick="deleteLastSentence()">X</button></div>
                 </div>
                 <div class="font-control">
-                    <div><input class="change-font-size increaseFont" type="button" onchange="increaseFontSize()" name="increase" value="A+"></div>
-                    <div><input class="change-font-size decreaseFont" type="button" onchange="decreaseFontSize()" name="decrease" value="A-"></div>
+                    <div><input class="change-font-size increaseFont" type="button" onclick="increaseFontSize()"
+                            name="increase" value="A+"></div>
+                    <div><input class="change-font-size decreaseFont" type="button" onclick="decreaseFontSize()"
+                            name="decrease" value="A-"></div>
 
                     <div><button class="align-text align-text-left" onclick="alignLeft()">⥪</button></div>
                     <div><button class="align-text align-text-center" onclick="alignCenter()">|||</button></div>
                     <div><button class="align-text align-text-right" onclick="alignRight()">⥭</button></div>
                     <div><input id="fontColor" type="color" name="fontColor" value="#FFFFFF"></div>
                     <div><input id="fontStrokeColor" type="color" name="fontStrokeColor" value="#000000"></div>
-                    <div><label><input id="fontStrokeWidth" type="range" name="fontStrokeWidth" min="1" max="8" step="1" value="2"></label></div>
-            </div>
-            <div class="use-meme">
-                <div><a href="#" onclick="uploadImg()" class="button button-share">Share</a></div>
-                <div class="share-container"></div>
-                <div><a href="#" onclick="downloadCanvas(this)" class="button button-download" download="Amazing">Download</a></div>
+                    <div><label><input id="fontStrokeWidth" type="range" name="fontStrokeWidth" min="1" max="8" step="1"
+                                value="2"></label></div>
+                </div>
+                <div class="use-meme">
+                    <div><a href="#" onclick="uploadImg()" class="button button-share">Share</a></div>
+                    <div class="share-container"></div>
+                    <div><a href="#" onclick="downloadCanvas(this)" class="button button-download"
+                            download="Amazing">Download</a></div>
 
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
 
 
-            </div>
+                </div>
             </div>
         </div>
     </div>
