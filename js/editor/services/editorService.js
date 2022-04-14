@@ -2,8 +2,8 @@
 
 // const gTouchEvs = ['touchdown', 'touchmove', 'touchend', 'touchout']
 
-let gElCanvas
-let gCtx
+let canvas
+let ctx
 let gMeme
 let gCurrentMeme
 
@@ -20,7 +20,6 @@ function draw(ev) {
         y,
     } = gMeme
 
-
     switch (gCurrentMeme) {
         case 'meme':
             drawImg(x, y)
@@ -31,22 +30,20 @@ function draw(ev) {
     }
 }
 
-
-
 function getMeme() {
     return gMeme
 }
 
 // function saveAndRestore() {
-//     gCtx.font = '50px Arial';
-//     gCtx.strokeStyle = 'green';
-//     gCtx.strokeText('Saving the context', 10, 50);
-//     gCtx.save();
-//     gCtx.font = '30px david';
-//     gCtx.strokeStyle = 'black';
-//     gCtx.strokeText('Switching to something else', 10, 100);
-//     gCtx.restore();
-//     gCtx.strokeText('Back to previous', 10, 150);
+//     ctx.font = '50px Arial';
+//     ctx.strokeStyle = 'green';
+//     ctx.strokeText('Saving the context', 10, 50);
+//     ctx.save();
+//     ctx.font = '30px david';
+//     ctx.strokeStyle = 'black';
+//     ctx.strokeText('Switching to something else', 10, 100);
+//     ctx.restore();
+//     ctx.strokeText('Back to previous', 10, 150);
 // }
 
 

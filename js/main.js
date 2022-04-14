@@ -1,15 +1,16 @@
 'use strict'
 
 function init() {
-    gElCanvas = document.querySelector('#canvas')
-    gCtx = gElCanvas.getContext('2d')
+    canvas = document.querySelector('#canvas')
+    ctx = canvas.getContext('2d')
+    canvas.width = 600
+    canvas.height = 800
     // resizeCanvas()
     // addListeners()
     renderGallery()
     drawText()
     document.getElementById('topLine').addEventListener('input', drawText)
 }
-
 
 function goToGallery() {
     let elComponents = document.querySelector('div.components-container')
@@ -36,8 +37,8 @@ function readAbout() {
 
 // function resizeCanvas() {
 //     const elContainer = document.querySelector('.canvas-container')
-//     gElCanvas.width = elContainer.offsetWidth
-//     gElCanvas.height = elContainer.offsetHeight
+//     canvas.width = elContainer.offsetWidth
+//     canvas.height = elContainer.offsetHeight
 // }
 
 
@@ -50,15 +51,15 @@ function readAbout() {
 // }
 
 // function addMouseListeners() {
-//     gElCanvas.addEventListener('mousemove', onMove)
-//     gElCanvas.addEventListener('mousedown', onDown)
-//     gElCanvas.addEventListener('mouseup', onUp)
+//     canvas.addEventListener('mousemove', onMove)
+//     canvas.addEventListener('mousedown', onDown)
+//     canvas.addEventListener('mouseup', onUp)
 // }
 
 // function addTouchListeners() {
-//     gElCanvas.addEventListener('touchmove', onMove)
-//     gElCanvas.addEventListener('touchstart', onDown)
-//     gElCanvas.addEventListener('touchend', onUp)
+//     canvas.addEventListener('touchmove', onMove)
+//     canvas.addEventListener('touchstart', onDown)
+//     canvas.addEventListener('touchend', onUp)
 // }
 
 // function onDown(ev) {
