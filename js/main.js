@@ -3,8 +3,8 @@
 function init() {
     canvas = document.querySelector('#canvas')
     ctx = canvas.getContext('2d')
-    canvas.width = 600
-    canvas.height = 800
+    canvas.width = 500
+    canvas.height = 514
     // resizeCanvas()
     // addListeners()
     renderGallery()
