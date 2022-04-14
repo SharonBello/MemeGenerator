@@ -14,7 +14,9 @@ function renderGallery() {
     elMemeImage.innerHTML = getGallery()
 }
 
+let selectedImg
 function openEditor(imgName) {
+    selectedImg= imgName
     //hide div.gallery-container
     let elComponents = document.querySelector('div.components-container')
     elComponents.style.display = 'none'

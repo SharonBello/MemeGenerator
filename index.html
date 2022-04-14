@@ -28,7 +28,6 @@
                 <div class="meme-img-container"></div>
             </div>
         </div>
-
         <div class="editor-container">
             <!-- Editor  -->
             <div class="canvas-container">
@@ -36,18 +35,16 @@
             </div>
 
             <div class="tools-container">
-                <div>
-                    <input type="text" id="topLine" name="userText" placeholder="write your message here" required
+                <div class="userText">
+                    <input class="userTextInput" onchange="handleOnChange(event)" type="text" name="userText" id="userText" placeholder="write your message here" required
                     minlength="4" maxlength="30" size="10" />
                 </div>
                 <div class="line-control">
                     <div><button class="switch-text-lines" onclick="toggleLines()">⇅</button></div>
-                    <div><button class="new-text-lines" onclick="addNewLine()">+</button></div>
-                    <div><button class="delete" onclick="clearCanvas()">X</button></div>
+                    <div><button class="new-text-lines" onclick="addNewLine(event)">+</button></div>
+                    <div><button class="delete" onclick="deleteLine()">X</button></div>
                 </div>
                 <div class="font-control">
-                    <!-- <div><button class="change-font-size" onclick="decreaseFontSize()">A+</button></div> -->
-                    <!-- <div><button class="change-font-size" onclick="increaseFontSize()">A-</button></div> -->
                     <div><input class="change-font-size increaseFont" type="button" onchange="increaseFontSize()" name="increase" value="A+"></div>
                     <div><input class="change-font-size decreaseFont" type="button" onchange="decreaseFontSize()" name="decrease" value="A-"></div>
 

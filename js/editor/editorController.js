@@ -1,5 +1,6 @@
 'use strict'
 
+
 function renderCanvas() {
     // ctx.fillStyle = "black"
     ctx.drawImage()
@@ -17,68 +18,103 @@ function drawMemeScaled(meme, ctx) {
     canvas = ctx.canvas
     ctx.beginPath();
     let ratio = Math.min((canvas.width / meme.width), (canvas.height / meme.height))
-    let ratioWidth = meme.width*ratio
-    let ratioHeight = meme.height*ratio
-    ctx.drawImage(meme, (canvas.width-ratioWidth)/2,(canvas.height-ratioHeight)/2,ratioWidth,ratioHeight)
-    drawText()
-    addNewLine()
-
+    let ratioWidth = meme.width * ratio
+    let ratioHeight = meme.height * ratio
+    ctx.drawImage(meme, (canvas.width - ratioWidth) / 2, (canvas.height - ratioHeight) / 2, ratioWidth, ratioHeight)
+    drawSentences()
 }
 
-const drawText = function () {
-    let txt = document.querySelector('input[name="userText"]').value
+function appendText(elMemeTxt) {
+    let userTxtInput = elMemeTxt.innerHTML
+    userTxtInput = `<input type="text" name="userInput" class=userTextInput />`
+    return userTxtInput
+  }
+
+function setCanvas() {
     let userFontFillStyle = document.querySelector('input[name="fontColor"]').value
     let userFontStrokeStyle = document.querySelector('input[name="fontStrokeColor"]').value
     let fontStrokeWidth = document.querySelector('input[name="fontStrokeWidth"]').value
-    // let fontStrokeWidth = document.getElementById('fontStrokeWidth').value
-    // let x = canvas.width - 500
-    // let y = canvas.height - 600
-    // ctx.beginPath()
-    // ctx.textBaseline = top
+    ctx.textBaseline = top
     ctx.font = `30px impact`
     ctx.strokeStyle = userFontStrokeStyle
     ctx.lineWidth = fontStrokeWidth
-    ctx.strokeText(txt, 20, 80)
-    // var m=ctx.measureText(txt)
     ctx.fillStyle = userFontFillStyle
-    ctx.fillText(txt, 20, 80)
     ctx.save()
 }
 
-// ctx.drawFocusIfNeeded(canvas)
-
-function addNewLine() {
-    let newTextLine = document.querySelector('input[name="userText"]').value = ''
-    // let x = canvas.width - 50
-    // let y = canvas.height - 60
-    // let y = canvas.height
-    // ctx.beginPath()
-    // ctx.textAlign = 'start'
-    ctx.font = `30px impact`
-    // ctx.textBaseline = bottom
-    ctx.strokeStyle = userFontStrokeStyle
-    ctx.lineWidth = fontStrokeWidth
-    // ctx.moveTo(0, y - 40)
-    // ctx.lineTo(550, y + 0.5)
-    ctx.strokeText(newTextLine, 20, 140)
-    // var m=ctx.measureText(txt)
-    ctx.fillStyle = userFontFillStyle
-    ctx.fillText(newTextLine, 20, 140)
-    // renderCanvas()
+const handleOnChange = (e) => {
+    let currSentence = getSentence()
+    const textLine = e.target.value
+    setCanvas()
+    ctx.strokeText(textLine, 20, (currSentence+1)*50)
+    ctx.fillText(textLine, 20, (currSentence+1)*50)
     ctx.save()
+    e.stopPropagation()
 }
 
-// function moveNewText(baseline, index) {
-//     const baselines = ['top', 'hanging', 'middle', 'alphabetic', 'ideographic', 'bottom'];
-//     ctx.font = '36px serif';
-//     ctx.strokeStyle = 'red';
+function addNewLine(e) {
+    let newTextLine = document.querySelector('input[class="userTextInput"]').value
+    let sentences = getSentences()
+    let currSentence = getSentence()
+    currSentence += 1
+    if (sentences.length>=2) {
+        const lastVal = sentences[sentences.length-1]
+        sentences.pop()
+        sentences.push(newTextLine)
+        sentences.push(lastVal)
+    } else {
+        sentences.push(newTextLine)
+    }
     
-//     baselines.forEach(function (baseline, index) {
-//       ctx.textBaseline = baseline;
-//       const y = 75 + index * 75;
-//       ctx.beginPath();
-//       ctx.moveTo(0, y + 0.5);
-//       ctx.lineTo(550, y + 0.5);
-//       ctx.stroke();
-//       ctx.fillText('Abcdefghijklmnop (' + baseline + ')', 0, y);
-//     });
+    clearCanvas()
+    drawSentences()
+    setCanvas()
+    e.stopPropagation()
+}
+
+function toggleLines() {
+    let sentences = getSentences()
+    if (sentences.length>=2) {
+        clearCanvas()
+        const tmp = sentences[0]
+        sentences[0] = sentences[sentences.length-1]
+        sentences[sentences.length-1] = tmp
+        ctx.strokeText(sentences[0], 20, (1)*50)
+        ctx.fillText(sentences[0], 20, (1)*50)
+        ctx.strokeText(sentences[sentences.length-1], 20, 450)
+        ctx.fillText(sentences[sentences.length-1], 20, 450)
+    }
+}
+
+function drawSentences() {
+    let sentences = getSentences()
+    let spacing = 40
+    if (sentences.length === 1) {
+        ctx.strokeText(sentences[0], 20, 50)
+        ctx.fillText(sentences[0], 20, 50)
+        
+    }else if (sentences.length >= 2) {
+        ctx.strokeText(sentences[0], 20, (1)*50)
+        ctx.fillText(sentences[0], 20, (1)*50)
+        ctx.strokeText(sentences[sentences.length-1], 20, 450)
+        ctx.fillText(sentences[sentences.length-1], 20, 450)
+
+        sentences.forEach((sentence, index) => {
+            if (index!==0 && index!==(sentences.length-1)) {
+                ctx.strokeText(sentence, 20, 250 + spacing)
+                ctx.fillText(sentence, 20, 250 + spacing)
+                spacing += 20    
+            }
+        })
+    }
+}
+
+function clearCanvas() {
+    drawImage("img/" + selectedImg)
+}
+
+function deleteLine() {
+    
+}
+
+

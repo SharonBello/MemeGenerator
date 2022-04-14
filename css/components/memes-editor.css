@@ -41,8 +41,7 @@ div.editor-container {
     border-radius: 3em;
     box-shadow: black 0px 4px 16px, black 0px 8px 24px, black 0px 16px 56px;
 }
-
-#topLine {
+#userText{
     font-size: 2em;
     color: black;
     width: 15em;

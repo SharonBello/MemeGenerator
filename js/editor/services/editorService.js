@@ -6,7 +6,8 @@ let canvas
 let ctx
 let gMeme
 let gCurrentMeme
-
+let gSenetences = []
+let gSelectedSentence = 0
 
 let memePos = {
     x: 0,
@@ -32,6 +33,14 @@ function draw(ev) {
 
 function getMeme() {
     return gMeme
+}
+
+function getSentence() {
+    return gSelectedSentence
+}
+
+function getSentences() {
+    return gSenetences
 }
 
 // function saveAndRestore() {
