@@ -1,6 +1,6 @@
 'use strict'
 
-let gCurrentMemeImage
+let gSelectedImgIdx = -1
 let gMemeImages = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']
 let keywordsTypes = ['funny', 'men', 'movie', 'comic', 'animal', 'smile', 'baby']
 let keywordsSize = [16, 16, 16, 16, 16, 16, 16]
@@ -26,16 +26,32 @@ let gMemeKeywords = [
     ['two', 'movie']
 ]
 let gMemeKeywordsFiltered = []
-let gImgs = createImgsArray()
+let gImgs = createImgsArray(gMemeImages, 'img')
 
-function createImgsArray() {
+function createImgsArray(memeImages, imgDir) {
     let gImgs = []
-    gMemeImages.forEach((img, index) => {
+    memeImages.forEach((img, index) => {
         gImgs.push({
             id: index,
-            url: 'imgs/' + img + '.jpg',
+            url: imgDir + '/' + img + '.jpg',
             keywords: gMemeKeywords[index]
         })
     })
     return gImgs
+}
+
+function getKeywordFilter() {
+    return gMemeKeywordsFiltered
+}
+
+function getMemeImgs() {
+    return gMemeImages
+}
+
+function setSelectedImgIdx(selectedImgIdx) {
+    gSelectedImgIdx = selectedImgIdx
+}
+
+function getSelectedImgIdx() {
+    return gSelectedImgIdx
 }

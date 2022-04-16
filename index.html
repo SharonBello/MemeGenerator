@@ -11,53 +11,59 @@
 
 <body onload="init()">
     <div class="page-container">
+        <!-- HEADER -->
         <div class="page-header">
             <img class="logo" src="logo/LOGO.png">
             <button class="btn-gallery" onclick="goToGallery()">Gallery</button>
+            <button class="btn-user-creations" onclick="getCreations()">Creations</button>
+            <button class="btn-user-memes" onclick="memeRandomizer()">Lucky Draw</button>
             <button class="btn-about" onclick="readAbout()">About</button>
         </div>
+        <!-- SEARCH -->
         <div class="components-container">
             <div class="search-container">
                 <form>
                     <input type="text" placeholder="Search.." class="search" onkeyup="searchKeywords(event)">
                     <button type="submit" class="btn-search"><i class="fa fa-search">&#xf002</i></button>
                 </form>
-            </div>
-            <div class="keywords">
-                <div>
-                    <button onclick='filterCategory("funny")' class="keyword funny">funny</button>
-                    <button onclick='filterCategory("men")' class="keyword men">men</button>
-                    <button onclick='filterCategory("movie")' class="keyword movie">movie</button>
-                    <button onclick='filterCategory("comic")' class="keyword comic">comic</button>
-                    <button onclick='filterCategory("animal")' class="keyword animal">animal</button>
-                    <button onclick='filterCategory("smile")' class="keyword smile">smile</button>
-                    <button onclick='filterCategory("baby")' class="keyword baby">baby</button>
-                    <button onclick='filterCategory("")' class="clear-filter">Clear</button>
-                    <button onclick='resetCategory()' class="clear-filter">Reset</button>
+                <div class="keywords">
+                    <div>
+                        <button onclick='filterCategory("funny")' class="keyword funny">funny</button>
+                        <button onclick='filterCategory("men")' class="keyword men">men</button>
+                        <button onclick='filterCategory("movie")' class="keyword movie">movie</button>
+                        <button onclick='filterCategory("comic")' class="keyword comic">comic</button>
+                        <button onclick='filterCategory("animal")' class="keyword animal">animal</button>
+                        <button onclick='filterCategory("smile")' class="keyword smile">smile</button>
+                        <button onclick='filterCategory("baby")' class="keyword baby">baby</button>
+                        <button onclick='filterCategory("")' class="clear-filter">Clear</button>
+                        <button onclick='resetCategory()' class="clear-filter">Reset Text</button>
+                    </div>
+                    <strong></strong>
                 </div>
-                <strong></strong>
             </div>
-            <!-- Gallery -->
+            <!-- GALLERY -->
             <div class="gallery-container">
-                <div class="meme-img-container"></div>
+                <div class="meme-img-container" style="--aspect-ratio: 1/1;"></div>
+            </div>
+            <!-- CREATIONS -->
+            <div class="creations-container">
+                <div class="creation-img-container" style="--aspect-ratio: 1/1;"></div>
             </div>
         </div>
         <div class="editor-container">
-            <!-- Editor  -->
+            <!-- EDITOR  -->
             <div class="canvas-container">
-                <canvas id="canvas" onmousemove="handleMouseMove(event)" onmousedown="handleMouseDown(event)" 
-                onmouseup="handleMouseUp(event)" onmouseout="handleMouseOut(event)"></canvas>
+                <canvas id="canvas" width="500" height="514"></canvas>
             </div>
-
+            <!-- TOOLS -->
             <div class="tools-container">
                 <div class="userText">
-                    <input class="userTextInput" onchange="handleOnChange(event)" type="text" name="userText"
-                        id="userText" placeholder="write your message here" required minlength="4" maxlength="30"
-                        size="10" />
+                    <input class="userTextInput" type="text" name="userText" id="userText"
+                        placeholder="write your message here" required minlength="4" maxlength="30" size="10" />
                 </div>
                 <div class="line-control">
                     <div><button class="switch-text-lines" onclick="toggleTopBottom()">⇅</button></div>
-                    <div><button class="new-text-lines" onclick="addNewSentence(event)">+</button></div>
+                    <div><button class="new-text-lines" onclick="addNewText(event)">+</button></div>
                     <div><button class="delete" onclick="deleteLastSentence()">X</button></div>
                 </div>
                 <div class="font-control">
@@ -65,36 +71,48 @@
                             name="increase" value="A+"></div>
                     <div><input class="change-font-size decreaseFont" type="button" onclick="decreaseFontSize()"
                             name="decrease" value="A-"></div>
-
                     <div><button class="align-text align-text-left" onclick="alignLeft()">⥪</button></div>
                     <div><button class="align-text align-text-center" onclick="alignCenter()">|||</button></div>
                     <div><button class="align-text align-text-right" onclick="alignRight()">⥭</button></div>
-                    <div><input id="fontColor" type="color" name="fontColor" value="#FFFFFF"></div>
-                    <div><input id="fontStrokeColor" type="color" name="fontStrokeColor" value="#000000"></div>
-                    <div><label><input id="fontStrokeWidth" type="range" name="fontStrokeWidth" min="1" max="8" step="1"
-                                value="2"></label></div>
+                    <div><label>Font color<input id="fontColor" type="color" name="fontColor" value="#FFFFFF"></label>
+                    </div>
+                    <div><label>Stroke color<input id="fontStrokeColor" type="color" name="fontStrokeColor"
+                                value="#000000" onchange="changeFontStrokeColor"></label></div>
+                    <div><label>Stroke Width<input id="fontStrokeWidth" type="range" name="fontStrokeWidth" min="1"
+                                max="8" step="1" value="2"></label></div>
+                    <label for="change-font-family">Choose a Font</label>
+                    <select name="fonts" id="fonts" onchange="changeFontFamily(this)">
+                        <option value="eurofurence">Eurofurence</option>
+                        <option value="lato">Lato</option>
+                        <option value="poppins">Poppins</option>
+                        <option value="impact">Impact</option>
+                    </select>
                 </div>
+                <!-- USER-MEMES -->
                 <div class="use-meme">
-                    <div><a href="#" onclick="uploadImg()" class="button button-share">Share</a></div>
+                    <a href="#" onclick="saveMeme()" class="button button-save">Save</a>
+                    <a href="#" onclick="uploadImg()" class="button button-share">Share</a>
                     <div class="share-container"></div>
-                    <div><a href="#" onclick="downloadCanvas(this)" class="button button-download"
-                            download="Amazing">Download</a></div>
-
+                    <a href="#" onclick="downloadCanvas(this)" class="button button-download"
+                        download="Amazing">Download</a>
                     <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-
-
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="js/services/utils.js"></script>
+    <script src="js/services/storage.js"></script>
     <script src="js/services/upload-service.js"></script>
-    <script src="js/services/canvasService.js"></script>
+    <script src="js/canvas/canvasService.js"></script>
     <script src="js/editor/services/editorService.js"></script>
     <script src="js/gallery/galleryService.js"></script>
     <script src="js/editor/editorController.js"></script>
+    <script src="js/userManage/userGalleryService.js"></script>
+    <script src="js/userManage/userGalleryController.js"></script>
     <script src="js/gallery/galleryController.js"></script>
     <script src="js/canvas/canvasService.js"></script>
+    <script src="js/canvas/canvasController.js"></script>
     <script src="js/main.js"></script>
 </body>
 

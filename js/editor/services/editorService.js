@@ -3,13 +3,22 @@
 let canvas
 let ctx
 let gTexts = []
-let gSelectedText = -1
+let gSelectedText = 0
 
 
-function getSentence() {
+function getSelectedText() {
     return gSelectedText
+}
+
+function setSelectedText (selectedTextIdx) {
+    gSelectedText = selectedTextIdx
+}
+
+function setTexts(texts) {
+    gTexts = texts
 }
 
 function getTexts() {
     return gTexts
 }
+

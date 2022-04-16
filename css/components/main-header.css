@@ -7,36 +7,35 @@
     min-height: 12vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    justify-items: center;
+    justify-content: space-around;
     align-items: center;
+    gap: 1em;
 }
 
 .logo {
-    height: 50px;
+    height: 2em;
     margin-left: 5em;
 }
 
-.btn-gallery {
+.btn-gallery, 
+.btn-user-memes,
+.btn-user-creations {
     border-radius: 10em;
     border: none;
-    font-size: 2em;
+    font-size: 1em;
     color: var(--header-btn-font);
     font-family: poppins;
     width: 150px;
     height: 50px;
-    position: relative;
-    margin-left: 25em;
+    padding: 0.2em;
+    margin: 0;
+    margin-left:2em;
     box-shadow: 10px, 10px, 5px black;
 }
 
 .btn-about {
-    /* margin-right: -300px; */
-    /* margin-top: 50px; */
     color: white;
     background: none;
     font-size: 2em;
-    /* float: right; */
-    font-family: poppins;
     border: none;
 }

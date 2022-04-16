@@ -4,47 +4,62 @@ let lastVal
 let xCoord = 0
 let fontSize = 28
 
+function onKeyUp(e) {
+    appendNewText(e)
+}
 
-const handleOnChange = (e) => {
-    let currSentence = getSentence()
-    const textLine = e.target.value
-    setCanvas()
-    ctx.strokeText(textLine, 50, (currSentence + 1) * 50)
-    ctx.fillText(textLine, 50, (currSentence + 1) * 50)
-    ctx.save()
+function appendNewText(e) {
+    let newTextLine = document.querySelector('input[class="userTextInput"]').value
+    let selectedTextIdx = getSelectedText()
+    let spacing = 20
+    if (selectedTextIdx === 0) {
+        ctx.strokeText(newTextLine, canvas.width / 5, canvas.height / 5)
+        ctx.fillText(newTextLine, canvas.width / 5, canvas.height / 5)
+    } else if (selectedTextIdx === 1) {
+        ctx.strokeText(newTextLine, canvas.width / 5, 450)
+        ctx.fillText(newTextLine, canvas.width / 5, 450)
+    } else {
+        ctx.strokeText(newTextLine, canvas.width / 5, 250 + spacing * (selectedTextIdx))
+        ctx.fillText(newTextLine, canvas.width / 5, 250 + spacing * (selectedTextIdx))
+    }
     e.stopPropagation()
 }
 
-function addNewSentence(e) {
+function addNewText(e) {
     let newTextLine = document.querySelector('input[class="userTextInput"]').value
+    document.querySelector('input[class="userTextInput"]').value = ""
+    const newText = {
+        text: newTextLine,
+        x: canvas.width / 5,
+        y: canvas.height / 5
+    }
     let texts = getTexts()
-    let currSentence = getSentence()
-    currSentence += 1
+    let selectedTextIdx = getSelectedText()
+    selectedTextIdx += 1
+    setSelectedText(selectedTextIdx)
     if (texts.length >= 2) {
         lastVal = texts[texts.length - 1]
         texts.pop()
-        texts.push(newTextLine)
+        texts.push(newText)
         texts.push(lastVal)
     } else {
-        texts.push(newTextLine)
+        texts.push(newText)
     }
-    clearCanvas()
-    drawTexts()
-    setCanvas()
+    renderCanvas()
     e.stopPropagation()
 }
 
-function toggleLines() {
+function toggleTopBottom() {
     let texts = getTexts()
     if (texts.length >= 2) {
         clearCanvas()
         const tmp = texts[0]
         texts[0] = texts[texts.length - 1]
         texts[texts.length - 1] = tmp
-        ctx.strokeText(texts[0], 50, (1) * 50)
-        ctx.fillText(texts[0], 50, (1) * 50)
-        ctx.strokeText(texts[texts.length - 1], 50, 450)
-        ctx.fillText(texts[texts.length - 1], 50, 450)
+        ctx.strokeText(texts[0].text, canvas.width / 5, (1) * canvas.height / 5)
+        ctx.fillText(texts[0].text, canvas.width / 5, (1) * canvas.height / 5)
+        ctx.strokeText(texts[texts.length - 1].text, canvas.width / 5, 450)
+        ctx.fillText(texts[texts.length - 1].text, canvas.width / 5, 450)
     }
 }
 
@@ -52,67 +67,64 @@ function deleteLastSentence() {
     let texts = getTexts()
     if (texts.length < 1) texts.pop()
     else if (texts.length >= 1) texts.splice(texts.length - 2, 1)
-    clearCanvas()
-    drawTexts()
-    setCanvas()
+    let selectedTextIdx = getSelectedText()
+    selectedTextIdx -= 1
+    setSelectedText(selectedTextIdx)
+    renderCanvas()
 }
 
 function alignLeft() {
-    xCoord = 50
+    xCoord = canvas.width / 5
+    let texts = getTexts()
+    texts.forEach((text) => {
+        text.x = canvas.width / 5
+    })
+    setTexts(texts)
     clearCanvas()
-    drawTexts()
 }
 
 function alignCenter() {
-    xCoord = 50
+    xCoord = canvas.width / 2
+    let texts = getTexts()
+    texts.forEach((text) => {
+        text.x = canvas.width / 2
+    })
+    setTexts(texts)
     clearCanvas()
-    drawTexts()
 }
 
 function alignRight() {
-    xCoord = 100
+    xCoord = 4 * canvas.width / 5
+    let texts = getTexts()
+    texts.forEach((text) => {
+        text.x = 4 * canvas.width / 5
+    })
+    setTexts(texts)
     clearCanvas()
-    drawTexts()
 }
 
 function increaseFontSize() {
     if (fontSize <= 34) {
         fontSize += 2
     }
-    clearCanvas()
-    drawTexts()
-    setCanvas()
+    renderCanvas()
 }
 
 function decreaseFontSize() {
     if (fontSize >= 14) {
         fontSize -= 2
     }
-    clearCanvas()
+    renderCanvas()
+}
+
+function changeFontStrokeColor(e) {
+    let userFontStrokeStyle = document.querySelector('input[name="fontStrokeColor"]').value
+    ctx.strokeStyle = userFontStrokeStyle
     drawTexts()
-    setCanvas()
 }
 
-///// MAYNE SWITCH???
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
+function changeFontFamily(sel) {
+    gFontFamily = sel.value
+    renderCanvas()
 }
 
-function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = ''
-    let reader = new FileReader()
-
-    reader.onload = (event) => {
-        let img = new Image()
-        // Render on canvas
-        img.src = event.target.result
-        img.onload = onImageReady.bind(null, img)
-    }
-    console.log('after');
-    reader.readAsDataURL(ev.target.files[0])
-}
-
-function renderImg(img) {
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-}
