@@ -3,7 +3,7 @@
 let keyFontSize = 16
 let selectedImg
 
-function getGallery(memeImages) {
+function getGallery(memeImages) { // Add images dynamically to gallery through the img index to match the image name
     let imgsGallery = ''
     for (let i = 0; i < memeImages.length; i++) {
         imgsGallery += `<img onclick="openEditor('img/${i+1}.jpg')" id="img${i+1}" class="meme-box" src="img/${getMemeImgs()[i]}.jpg">`
@@ -11,17 +11,17 @@ function getGallery(memeImages) {
     return imgsGallery
 }
 
-function renderGallery() {
+function renderGallery() { // Render images to DOM
     let elMemeImage = document.querySelector('.meme-img-container')
     elMemeImage.innerHTML = getGallery(getMemeImgs())
 }
 
-function renderCreations() {
+function renderCreations() { // Render user memes to DOM
     let elMemeImage = document.querySelector('.creation-img-container')
     elMemeImage.innerHTML = getCreations()
 }
 
-function openEditor(imgName) {
+function openEditor(imgName) { // Click to show editor
     setSelectedImgIdx(imgName)
     selectedImg = imgName
     //hide div.gallery-container
@@ -38,8 +38,8 @@ function openEditor(imgName) {
 
 function filterCategory(filterBy) {
     if (filterBy === "") {
-        event.stopPropagation()
-        event.preventDefault
+        // event.stopPropagation()
+        // event.preventDefault
         let elMemeImage = document.querySelector('.meme-img-container')
         elMemeImage.innerHTML = getGallery(getMemeImgs())
         return
