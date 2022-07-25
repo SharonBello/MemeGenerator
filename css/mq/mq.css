@@ -1,0 +1,11 @@
+@media  (min-width: 300px) and (max-width:800px) {
+    .editor-container {
+        width: 90vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5em;
+        align-items: center;
+        align-self: center;
+    }
+}
