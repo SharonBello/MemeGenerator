@@ -45,7 +45,7 @@ button.btn-search {
   }
 
 button.keyword,
-.clear-filter {
+button.clear-filter {
     color: none;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,4 +54,5 @@ button.keyword,
     border: none;
     font-size: 1em;
     position: relative;
+    cursor: pointer;
 }

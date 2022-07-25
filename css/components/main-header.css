@@ -13,7 +13,7 @@
 }
 
 .logo {
-    height: 2em;
+    height: 15em;
     margin-left: 5em;
 }
 
@@ -31,6 +31,7 @@
     margin: 0;
     margin-left:2em;
     box-shadow: 10px, 10px, 5px black;
+    cursor: pointer;
 }
 
 .btn-about {
@@ -38,4 +39,5 @@
     background: none;
     font-size: 2em;
     border: none;
+    cursor: pointer;
 }
